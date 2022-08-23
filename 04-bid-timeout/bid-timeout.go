@@ -7,9 +7,10 @@ import (
 )
 
 func bid(item int) Bid {
+	rand.Seed(time.Now().Unix())
 	secs := rand.Intn(10)
-	time.Sleep(time.Duration(secs) * time.Second)
 	fmt.Println("O item", item, "vai demorar", secs, "segundos")
+	time.Sleep(time.Duration(secs) * time.Second)
 	return Bid{item, 3, false}
 }
 
@@ -73,7 +74,7 @@ func handle(nServers int, timeoutSeconds int) chan Bid {
 }
 
 func main() {
-	nServers := 3
+	nServers := 1
 	timeoutSeconds := 3
 	bidCh := handle(nServers, timeoutSeconds)
 
